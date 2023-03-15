@@ -9,7 +9,7 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        assert 'login' in LoginPageLocators.LOGIN_URL, "URL has not login"
+        assert 'login' in self.browser.current_url, "URL has not login"
 
     def should_be_login_form(self):
         assert LoginPageLocators.LOGIN_FORM, "Login form is not presented"
