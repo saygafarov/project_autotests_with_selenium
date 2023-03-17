@@ -25,3 +25,15 @@ class ProductPage(BasePage):
 	def should_be_same_product_price_in_basket_and(self, book_price_on_page):
 		book_price_on_basket = self.browser.find_element(*BasketPageLocators.BOOK_PRICE_ON_BASKET).text
 		assert book_price_on_page == book_price_on_basket, "Book price on page is different book price on basket"
+
+	def should_be_same_product_name_on_main_page(self):
+		book_name_on_page = self.browser.find_element(*BasketPageLocators.BOOK_NAME_ON_PAGE).text
+		book_name_on_page_added_in_basket = self.browser.find_element(*BasketPageLocators.BOOK_NAME_ON_PAGE_ADDED_IN_BASKET).text
+		current_url = self.browser.current_url
+		assert book_name_on_page == book_name_on_page_added_in_basket, f"Book name on page is different book name on basket{current_url}"
+
+	def should_be_same_product_price_on_main_page(self):
+		book_price_on_page = self.browser.find_element(*BasketPageLocators.BOOK_PRICE_ON_PAGE).text
+		book_price_on_page_added_in_basket = self.browser.find_element(*BasketPageLocators.BOOK_PRICE_ON_PAGE_ADDED_IN_BASKET).text
+		current_url = self.browser.current_url
+		assert book_price_on_page == book_price_on_page_added_in_basket, f"Book price on page is different book price on basket{current_url}"

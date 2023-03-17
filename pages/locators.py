@@ -14,3 +14,5 @@ class BasketPageLocators():
 	BOOK_PRICE_ON_BASKET = (By.CSS_SELECTOR, '.price_color.align-right')
 	BOOK_NAME_ON_PAGE = (By.CSS_SELECTOR, 'div > h1')
 	BOOK_PRICE_ON_PAGE = (By.CSS_SELECTOR, '.col-sm-6.product_main .price_color')
+	BOOK_NAME_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages > div:first-child > div > strong')
+	BOOK_PRICE_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:first-child > strong')
