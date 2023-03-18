@@ -15,9 +15,31 @@ import pytest
 def test_guest_can_add_product_to_basket(browser, link):
 	page = ProductPage(browser, link)
 	page.open()
-
+	page.should_not_be_success_message()
 	page.should_be_add_to_page()
 	page.solve_quiz_and_get_code()
 	page.should_be_same_product_name_on_main_page()
 	page.should_be_same_product_price_on_main_page()
+
+@pytest.mark.xfail(reason="guest can see message")	
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+	page = ProductPage(browser, link)
+	page.open()
+	page.should_be_add_to_page()
+	page.should_not_be_success_message()
+
+def test_guest_cant_see_success_message(browser):
+	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+	page = ProductPage(browser, link)
+	page.open()
+	page.should_not_be_success_message()
+
+@pytest.mark.xfail(reason="message don't disappeared")	
+def test_message_disappeared_after_adding_product_to_basket(browser):
+	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+	page = ProductPage(browser, link)
+	page.open()
+	page.should_be_add_to_page()
+	page.should_be_disappeared_message()
 
