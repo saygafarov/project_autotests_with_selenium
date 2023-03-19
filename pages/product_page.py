@@ -4,11 +4,6 @@ from .locators import ProductPageLocators
 
 class ProductPage(BasePage):
 
-	def go_to_basket_page(self):
-		basket_button = self.browser.find_element(*BasketPageLocators.BASKET_BUTTON)
-		self.browser.implicitly_wait(1)
-		basket_button.click()
-
 	def should_be_add_to_page(self):
 		add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON)
 		add_to_basket_button.click()
