@@ -16,7 +16,11 @@ class ProductPageLocators():
 	BASKET_BUTTON = (By.CSS_SELECTOR, 'span > a[href]')
 	BOOK_NAME_ON_PAGE = (By.CSS_SELECTOR, 'div > h1')
 	BOOK_PRICE_ON_PAGE = (By.CSS_SELECTOR, '.col-sm-6.product_main .price_color')
-	BOOK_NAME_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages > div:first-child > div > strong')
-	BOOK_PRICE_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:first-child > strong')
-	#SUCCESS_MESSAGE = (By.CSS_SELECTOR, '//*[@id="messages"]/div[1]/div/text()')
+	BOOK_NAME_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages .alert:nth-child(1) .alertinner strong')
+	BOOK_PRICE_ON_PAGE_ADDED_IN_BASKET = (By.CSS_SELECTOR, '#messages .alert:nth-child(3) .alertinner strong')
 	SUCCESS_MESSAGE = (By.CSS_SELECTOR, '#messages .alert:nth-child(1) .alertinner')
+
+class BasePageLocators():
+	LOGIN_LINK = (By.CSS_SELECTOR, '#login_link')
+	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, '#login_link_inc')
+
