@@ -1,7 +1,41 @@
 from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 import pytest
+import time
+
+@pytest.mark.user_registr
+class TestUserAddToBasketFromProductPage():
+	@pytest.fixture(scope="function", autouse=True)
+	def setup(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/"
+		page = MainPage(browser, link)
+		page.open()
+		page.go_to_login_page()
+		email = str(time.time()) + '@fakemail.org'
+		password = str(time.time())
+		login_page = LoginPage(browser, browser.current_url)
+		login_page.regist_new_user(email, password)
+		browser.implicitly_wait(10)
+		login_page.should_be_authorized_user()
+
+	def test_user_cant_see_success_message(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+		page = ProductPage(browser, link)
+		page.open()
+		page.should_not_be_success_message()
+
+	def test_user_can_add_product_to_basket(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+		page = ProductPage(browser, link)
+		page.open()
+		page.should_not_be_success_message()
+		page.should_be_add_to_page()
+		page.solve_quiz_and_get_code()
+		page.should_be_same_product_name_on_main_page()
+		page.should_be_same_product_price_on_main_page()
+
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
